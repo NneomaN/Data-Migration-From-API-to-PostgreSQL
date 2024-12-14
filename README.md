@@ -7,7 +7,7 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
 3. A PostgreSQL instance hosted on Azure.
 4. An Airflow environment.
 
-![Visual representation of data flow; from API throw Airflow pipeline to PostgreSQL DB](/images/ETL_Overview.jpg "Process Architecture")
+![Visual representation of data flow; from API throw Airflow pipeline to PostgreSQL DB](/assets/ETL_Overview.jpg "Process Architecture")
 
 ### Extract
 - Set up Spotify App
