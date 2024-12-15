@@ -13,7 +13,7 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
 - Set up Spotify App
   - Log in to the [Spotify developer page](developer.spotify.com) using the credentials associated with the spotify account
   - On the dashboard, create an App following the instructions in the [documentation](developer.spotify.com/documentation/web-api).
-    During set up, set the Redirect URI to "http://localhost:8888/callback/, making sure to select "Web API" and take note of the app credentials.
+    During set up, set the Redirect URI to "http://localhost:8888/callback/", making sure to select "Web API" and take note of the app credentials.
 - Get Authorisation Code: This step is required because playlist history is protected information
   - Open the *Authorisation URL* in a web browser and construct the URL with the proper  client-ID and redirect URI values as it appears on the APP
     ```
