@@ -24,7 +24,7 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
     &scope=user-read-recently-played
     ```
   - Running the correctly configured Authorisation URL will return a code in the browser search bar in the format '<redirect_uri>?code=<authorisation-code>'
-    whichwe will use to generate a Token. 
+    you can use to generate a Token. 
 - Using the requests module in a python developement environment access data, folowing the details outlined in the [python notebook](#).
 
 ### Transform
