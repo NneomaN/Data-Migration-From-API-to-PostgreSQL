@@ -1,4 +1,4 @@
-# Data-migration-from-api-to-postregsl
+# Data-migration-from-api-to-postgresql
 This is an ETL and Orchestration case study using the Spotify API, Apache Airflow, and a PostgreSQL DB hosted on Azure.
 
 **Prerequisite:**
@@ -11,26 +11,28 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
 
 ### Extract
 - Set up Spotify App
-  - Log in to the [Spotify developer page](developer.spotify.com) using the credentials associated with the spotify account
-  - On the dashboard, create an App following the instructions in the [documentation](developer.spotify.com/documentation/web-api).
-    During set up, set the Redirect URI to "http\://localhost:8888/callback/", making sure to select "Web API" and take note of the app credentials.
-- Get Authorisation Code: This step is required because playlist history is protected information
-  - Open the *Authorisation URL* in a web browser and construct the URL with the proper  client-ID and redirect URI values as it appears on the APP
+  - First I logged on to the [Spotify developer page](developer.spotify.com) using the credentials associated with my Spotify account.
+  - On the dashboard, I created an App following the instructions in the [documentation](developer.spotify.com/documentation/web-api).
+    During set up, I set the Redirect URI to "http\://localhost:8888/callback/", which is required for return the authorisation code, making sure to select "Web API" and taking note of the app credentials.
+- Get Authorisation Code: This step is required because playlist history is protected information.
+  - Using the *Authorisation URL* in a web browser and I pass the Client-ID and Redirect URI values as it appears on the APP
     ```
+    ---Authorisation URL ------
+    
     https://accounts.spotify.com/authorize?
     client_id=<client_id>
     &response_type=code
     &redirect_uri=<redirect_uri>
     &scope=user-read-recently-played
     ```
-  - Running the correctly configured Authorisation URL will return a code in the browser search bar in the format '<redirect_uri>?code=<authorisation-code>'
-    you can use to generate a Token. 
-- Using the requests module in a python developement environment access data, folowing the details outlined in the [python notebook](#).
+  - Running the correctly configured Authorisation URL returns a code in the browser search bar in the format '<redirect_uri>?code=<authorisation-code>'
+    used to generate a Token. 
+- Using the requests module in a python development environment I access data, following the details outlined in the [python notebook](#).
 
 ### Transform
-* I explored spotify data, looking through keys and value structure
+* I explored Spotify data, looking through keys and value structure
 * Identify and extract relevant data points (timeplayed, songname, artistname, 
-* I structured the data points in a dataframe ready to be losaded into the database
+* I structured the data points in a dataframe ready to be loaded into the database
 
 ### Load
 * Connect to PostgreSQL DB
@@ -39,8 +41,8 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
 
 ### Orchestrate using Apache Airflow
 *  Set up Airflow environment
-*  Define functions to exceute tasks
+*  Define functions to execute tasks
 *  Define DAG
 *  Set task order
 
-At the end you get a store of listening histroy to slice and dice however you like. Enjoy!
+At the end you get a store of listening history to slice and dice however you like. Enjoy!
