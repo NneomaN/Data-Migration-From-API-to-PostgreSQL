@@ -2,7 +2,7 @@
 This is an ETL and Orchestration case study using the Spotify API, Apache Airflow, and a PostgreSQL DB hosted on Azure.
 
 **Prerequisite:**
-1. Basic understanding of Python and SQL syntax.  
+1. Basic understanding of Python and SQL syntax.
 2. A Spotify Account.
 3. A PostgreSQL instance hosted on Azure.
 4. An Airflow environment.
@@ -11,7 +11,7 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
 
 ### Extract
 - Set up Spotify App
-  - First I logged on to the [Spotify developer page](developer.spotify.com) using the credentials associated with my Spotify account.
+  - First, I logged on to the [Spotify developer page](developer.spotify.com) using the credentials associated with my Spotify account.
   - On the dashboard, I created an App following the instructions in the [documentation](developer.spotify.com/documentation/web-api).
     During set up, I set the Redirect URI to "http\://localhost:8888/callback/", which is required for return the authorisation code, making sure to select "Web API" and taking note of the app credentials.
 - Get Authorisation Code: This step is required because playlist history is protected information.
