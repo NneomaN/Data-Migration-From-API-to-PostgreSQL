@@ -29,20 +29,21 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
     used to generate a Token. 
 - Using the requests module in a python development environment I access data, following the details outlined in the [python notebook](#).
 
-### Transform
+### Explore and Transform
 * I explored Spotify data, looking through keys and value structure
-* Identify and extract relevant data points (timeplayed, songname, artistname, 
-* I structured the data points in a dataframe ready to be loaded into the database
+* Identify and extract relevant data points (timeplayed, track id, track name, track duration, primary artist's name, album id, album name.
+
 
 ### Load
-* Connect to PostgreSQL DB
-* Create table with relevant constraints
-* Loop through data selected inserting into instance
+* I cnnected to the postgresql using the _psycopg2 package 
+* Using the execute method I run sql queries to create the table with relevant constraints
+* I iterate through the tracks played using a for loop, extracting the relevant data points and inserting them into the table created.
+* I commit all changes and close the connection.
 
 ### Orchestrate using Apache Airflow
 *  Set up Airflow environment
-*  Define functions to execute tasks
-*  Define DAG
-*  Set task order
+*  I define three functions to refresh the access token, call API and get data, an dload data into postgreSQL database.  
+*  I define the DAG to call the functions on a 6 hour interval and set task dependencies.
 
-At the end you get a store of listening history to slice and dice however you like. Enjoy!
+
+At the end of the implementation I get a store of my Spotify listening history to slice, dice and wrap.
