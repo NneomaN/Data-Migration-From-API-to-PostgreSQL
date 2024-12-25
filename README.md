@@ -35,7 +35,7 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
 
 
 ### Load
-* I cnnected to the postgresql using the _psycopg2 package 
+* I connected to the postgresql using the _psycopg2_ package 
 * Using the execute method I run sql queries to create the table with relevant constraints
 * I iterate through the tracks played using a for loop, extracting the relevant data points and inserting them into the table created.
 * I commit all changes and close the connection.
