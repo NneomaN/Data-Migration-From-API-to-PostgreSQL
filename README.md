@@ -40,10 +40,10 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
 * I iterate through the tracks played using a for loop, extracting the relevant data points and inserting them into the table created.
 * I commit all changes and close the connection.
 
-### Orchestrate using Apache Airflow
-*  Set up Airflow environment
-*  I define three functions to refresh the access token, call API and get data, an dload data into postgreSQL database.  
-*  I define the DAG to call the functions on a 6 hour interval and set task dependencies.
+## Orchestrate using Apache Airflow
+Finally I turn the repetitive process into a data pipeline I then orchestrate, using airflow, to run every 6 hours. 
+*  I define the process in three functions to ensur emodularity; to refresh the access token, call API to get data, and load data into postgreSQL database.  
+*  Finally I define the DAG to call the functions on a 6 hour interval and set task dependencies.
+The entire process is detailed in [this notebook](#)
 
-
-At the end of the implementation I get a store of my Spotify listening history to slice, dice and wrap.
+At the end of the implementation I get a store of my Spotify listening history in a cloud based PostgreSQL database, to slice, dice and wrap how ever I want 😁.
