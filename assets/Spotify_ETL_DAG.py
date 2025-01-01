@@ -11,9 +11,9 @@ with open("materials\postgresql_config.json", 'r') as ch_conn:
         DB_PARAMS = json.load(ch_conn)
 
 # Define your Spotify API and other parameters
-CLIENT_ID = "0c08f747e42447fda05209b679bce653"
-CLIENT_SECRET = "d54889fc94274ae8a45d8927b7250e2d"
-refresh_token = "AQBt-C9qIJ1HZH5n7DddZVz1dee9fcO6_QajDDgrCHpzneEMarrweTb3jNzFKB2b-TnmCxjIbf6HFDxzvlmTUKLPR_ezQx8c5m-9vEvPO4RHmIw3oKNCI2aJRZRGfbfGfkE"
+CLIENT_ID = "<your_client_id>"
+CLIENT_SECRET = "<your_client_secret>"
+refresh_token = "<your_refresh_token>"
 #Function to generate new valid access token
 def refresh_access_token():
     url = "https://accounts.spotify.com/api/token"
