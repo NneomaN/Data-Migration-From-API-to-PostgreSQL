@@ -4,15 +4,11 @@ from datetime import datetime, timedelta
 import requests
 import psycopg2
 import base64
+import json
 
 # Define your database connection parameters
-DB_PARAMS = {
-    'host': 'etlproject.postgres.database.azure.com',
-    'database': 'postgres',
-    'user': 'nomzzy',
-    'password': 'nNEOMA94',
-    'port': '5432'
-}
+with open("materials\postgresql_config.json", 'r') as ch_conn:
+        DB_PARAMS = json.load(ch_conn)
 
 # Define your Spotify API and other parameters
 CLIENT_ID = "0c08f747e42447fda05209b679bce653"
@@ -46,7 +42,7 @@ def fetch_spotify_data():
         "Authorization": f"Bearer {TOKEN}"
     }
 
-    today = datetime.datetime.now() 
+    today = datetime.now() 
     yesterday = today - timedelta(hours=6)
     yesterday_unix_timestamp = int(yesterday.timestamp()) * 1000  # convert to milliseconds
 
@@ -135,3 +131,5 @@ with DAG(
 
     # Set task dependencies
     refresh_token_task >> fetch_data_task >> load_data_task
+
+    
