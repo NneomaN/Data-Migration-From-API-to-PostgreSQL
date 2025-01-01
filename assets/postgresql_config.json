@@ -1,6 +1,6 @@
 {
     "host": "<your_postreSQL_instance_name>",
-    "database":  "<your_database_name",
+    "database":  "<your_database_name>",
     "user": "<your_username>",
     "password": "<your_password>",
     "port": "5432"  
