@@ -34,7 +34,7 @@ Because playlist history is protected, I needed to obtain an authorization code:
 The autorisation code is then used to generate a Token.
 
 #### Get Data using Access Token
-Using the requests module in a python development environment I access data, following the details outlined in the [python notebook](#).
+Using the requests module in a python development environment I access data, following the details outlined in the [python notebook](https://github.com/NneomaN/Data-Migration-From-API-to-PostgreSQL/blob/main/assets/spotify_data_etl.py).
 
 
 ### Explore and Transform
@@ -65,7 +65,7 @@ To automate the ETL process, I implemented an Airflow pipeline to run every six 
    - Loading data into the PostgreSQL database.
 2. I created a Directed Acyclic Graph (DAG) in Airflow to schedule and manage the tasks, ensuring dependencies were set appropriately.
 
-The full implementation is detailed in this [dag file](#) .
+The full implementation is detailed in this [dag file](https://github.com/NneomaN/Data-Migration-From-API-to-PostgreSQL/blob/main/assets/spotify_etl_dag.py) .
 
 ### Outcome
 At the end of the implementation I get a store of my Spotify listening history in a cloud based PostgreSQL database, to slice, dice and wrap how ever I want 😁.
