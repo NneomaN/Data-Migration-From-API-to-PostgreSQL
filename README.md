@@ -1,23 +1,27 @@
 # Data-migration-from-api-to-postgresql
-This is an ETL and Orchestration case study using the Spotify API, Apache Airflow, and a PostgreSQL DB hosted on Azure.
+This is an ETL and Orchestration case study which demonstrates making API data calls, data exploration and pipeline orchestration. It was implemented using the Spotify API, Apache Airflow, and a PostgreSQL DB hosted on Azure.
 
-**Prerequisite:**
+**Prerequisites:**
 1. Basic understanding of Python and SQL syntax.
-2. A Spotify Account.
+2. A Spotify account.
 3. A PostgreSQL instance hosted on Azure.
 4. An Airflow environment.
 
 ![Visual representation of data flow; from API throw Airflow pipeline to PostgreSQL DB](/assets/ETL_Overview.jpg "Process Architecture")
 
 ### Extract
-- Set up Spotify App
-  - First, I logged on to the [Spotify developer page](developer.spotify.com) using the credentials associated with my Spotify account.
-  - On the dashboard, I created an App following the instructions in the [documentation](developer.spotify.com/documentation/web-api).
-    During set up, I set the Redirect URI to "http\://localhost:8888/callback/", which is required for return the authorisation code, making sure to select "Web API" and taking note of the app credentials.
-- Get Authorisation Code: This step is required because playlist history is protected information.
-  - Using the *Authorisation URL* in a web browser and I pass the Client-ID and Redirect URI values as it appears on the APP
+#### Set up Spotify App
+To access Spotify data, I created a Spotify app:
+- First, I logged on to the [Spotify developer page](developer.spotify.com) using my Spotify account's credentials.
+- I followed the [documentation](developer.spotify.com/documentation/web-api) to create an App on the dashboard.
+  - During set up, I set the Redirect URI to "http\://localhost:8888/callback/", which is required to return the authorisation code
+  - I made sure to select "Web API" and noted the app credentials.
+
+#### Get Authorisation Code
+Because playlist history is protected, I needed to obtain an authorization code:
+  - Using the *Authorisation URL* in a web browser and I pass the Client-ID and Redirect URI values exactly as it appears on the App.
     ```
-    ---Authorisation URL ------
+    --- Authorisation URL ---
     
     https://accounts.spotify.com/authorize?
     client_id=<client_id>
@@ -25,25 +29,43 @@ This is an ETL and Orchestration case study using the Spotify API, Apache Airflo
     &redirect_uri=<redirect_uri>
     &scope=user-read-recently-played
     ```
-  - Running the correctly configured Authorisation URL returns a code in the browser search bar in the format '<redirect_uri>?code=<authorisation-code>'
-    used to generate a Token. 
-- Using the requests module in a python development environment I access data, following the details outlined in the [python notebook](#).
+  - Running the correctly configured Authorisation URL returns a code in the browser search bar in the format ``` <redirect_uri>?code= <authorisation-code> ``` .
+
+The autorisation code is then used to generate a Token.
+
+#### Get Data using Access Token
+Using the requests module in a python development environment I access data, following the details outlined in the [python notebook](#).
+
 
 ### Explore and Transform
-* I explored Spotify data, looking through keys and value structure
-* Identify and extract relevant data points (timeplayed, track id, track name, track duration, primary artist's name, album id, album name.
+Once I accessed the data, I explored it looking through keys and value structure and transformed it for analysis.
+
+I identified and extracted relevant data points including:
+  - Time played
+  - Track ID
+  - Track name
+  - Track duration
+  - Primary artist's name
+  - Album ID
+  - Album name
 
 
-### Load
-* I connected to the postgresql using the _psycopg2_ package 
-* Using the execute method I run sql queries to create the table with relevant constraints
-* I iterate through the tracks played using a for loop, extracting the relevant data points and inserting them into the table created.
-* I commit all changes and close the connection.
+### Load into database
+I loaded the transformed data into a cloud-based PostgreSQL database:
+* I connected to the postgreSQL instance using the _psycopg2_ package.
+* I created tables with appropriate constraints using SQL queries executed through Python.
+* I iterated through the track data, extracting the relevant data points and inserting them into the table created.
+* I committed all changes and closed the database connection.
 
 ## Orchestrate using Apache Airflow
-Finally I turn the repetitive process into a data pipeline I then orchestrate, using airflow, to run every 6 hours. 
-*  I define the process in three functions to ensur emodularity; to refresh the access token, call API to get data, and load data into postgreSQL database.  
-*  Finally I define the DAG to call the functions on a 6 hour interval and set task dependencies.
-The entire process is detailed in [this notebook](#)
+To automate the ETL process, I implemented an Airflow pipeline to run every six hours:
+1. I defined three modular functions for:
+   - Refreshing the access token.
+   - Calling the API to retrieve data.
+   - Loading data into the PostgreSQL database.
+2. I created a Directed Acyclic Graph (DAG) in Airflow to schedule and manage the tasks, ensuring dependencies were set appropriately.
 
+The full implementation is detailed in this [dag file](#) .
+
+### Outcome
 At the end of the implementation I get a store of my Spotify listening history in a cloud based PostgreSQL database, to slice, dice and wrap how ever I want 😁.
